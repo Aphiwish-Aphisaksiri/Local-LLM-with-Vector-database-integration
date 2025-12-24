@@ -1,0 +1,22 @@
+# Ignore ChromaDB database files
+chroma_db/
+!chroma_db/.gitkeep
+
+# Ignore all model files in the models folder
+models/
+!models/.gitkeep
+
+# Ignore chat history
+conversation.db
+
+# Python cache and environment files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+
+# OS files
+.DS_Store
+Thumbs.db

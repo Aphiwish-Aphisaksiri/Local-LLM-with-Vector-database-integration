@@ -7,10 +7,10 @@ import chromadb
 import os
 
 # --- Config ---
-MODEL_PATH = "models/TinyLlama-1.1B-Chat-v1.0.Q4_K_M.gguf"  # Update as needed
+MODEL_PATH = "models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf"  # Update as needed
 CHROMA_DB_PATH = "chroma_db"
 COLLECTION_NAME = "capstone_pdf"
-EMBED_MODEL = "all-MiniLM-L6-v2"
+EMBED_MODEL = "all-MiniLM-L6-v2" # SentenceTransformer model by HuggingFace
 
 # --- Load LLM and Embedding Model ---
 llm = Llama(model_path=MODEL_PATH, n_ctx=2048)

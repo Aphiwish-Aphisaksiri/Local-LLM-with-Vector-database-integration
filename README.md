@@ -1,4 +1,3 @@
-
 # Local-LLM-with-Vector-database-integration
 
 This project demonstrates how to run a local Large Language Model (LLM) with vector database integration, providing a RESTful API (FastAPI) and a React-based chat UI.
@@ -6,7 +5,7 @@ This project demonstrates how to run a local Large Language Model (LLM) with vec
 ## Requirements
 
 ### Python Backend
-- Python 3.8+ (preferably 3.11)
+- Docker (recommended for easy setup)
 - [llama-cpp-python](https://github.com/abetlen/llama-cpp-python)
 - [fastapi](https://fastapi.tiangolo.com/)
 - [uvicorn](https://www.uvicorn.org/)
@@ -24,18 +23,11 @@ This project demonstrates how to run a local Large Language Model (LLM) with vec
 
 ## Setup
 
-### 1. Python Environment
-Install dependencies:
-
-```cmd
-pip install llama-cpp-python fastapi uvicorn sentence-transformers chromadb pdfplumber
-```
-
-### 2. Download Model
+### 1. Download Model
 - Download a GGUF model file (see above)
 - Place it in `models/` (e.g., `models/TinyLlama-1.1B-Chat-v1.0.Q4_K_M.gguf`)
 
-### 3. Vector Database Setup (Optional)
+### 2. Vector Database Setup (Optional)
 To ingest a PDF and create a ChromaDB collection:
 
 ```cmd
@@ -43,31 +35,32 @@ python pdf_to_chromadb.py
 ```
 This will create a persistent vector DB in `chroma_db/`.
 
-### 4. React Frontend
-Install dependencies:
+### 3. Build Docker Image
 
-```cmd
-cd chatbot-ui
-npm install
+Make sure Docker is installed and running.  
+Build the Docker image from the project root:
+
+```sh
+docker build -t local-llm-app .
 ```
 
 ## Running
 
-### 1. Start FastAPI Server
+### 1. Start FastAPI Server with Docker
 
-```cmd
-python chat_server.py
+Run the container (it will automatically remove itself after stopping):
+
+```sh
+docker run --rm -p 8000:8000 local-llm-app
 ```
-or for vector DB integration:
-```cmd
-python chat_server_vector.py
-```
-Server runs at `http://localhost:8000`.
+
+The server will be available at `http://localhost:8000`.
 
 ### 2. Start React Chat UI
 
 ```cmd
 cd chatbot-ui
+npm install
 npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
